@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flannel : MonoBehaviour {
+public class Faller : MonoBehaviour {
 	public float zRotationSpeed;
 	public int yMovementSpeed;
 	public float minXLocationScreenPoint;
@@ -28,10 +28,10 @@ public class Flannel : MonoBehaviour {
 		if (isBumped) {
 			if (isBumpedLeft) {
 				newPositionX 
-					= transform.position.x - xMovementSpeed * Time.deltaTime;
+				= transform.position.x - xMovementSpeed * Time.deltaTime;
 			} else {
 				newPositionX 
-					= transform.position.x + xMovementSpeed * Time.deltaTime;
+				= transform.position.x + xMovementSpeed * Time.deltaTime;
 			}
 		} else {
 			newPositionX = transform.position.x;

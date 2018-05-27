@@ -10,9 +10,9 @@ public class BasketInnerCollisionManager : MonoBehaviour {
 		GameObject collidedObject = otherCollider.gameObject;
 
 		if (collidedObject.tag == "flannel") {
-			Flannel collidedFlannel = collidedObject.GetComponent<Flannel>();
+			Faller collidedFaller = collidedObject.GetComponent<Faller>();
 
-			if (!collidedFlannel.isBumped)
+			if (!collidedFaller.isBumped)
 				Destroy(collidedObject);
 		}
 	}

@@ -10,9 +10,9 @@ public class BasketOuterCollisionManager : MonoBehaviour {
 		GameObject collidedObject = otherCollider.gameObject;
 
 		if (collidedObject.tag == "flannel") {
-			Flannel collidedFlannel = collidedObject.GetComponent<Flannel>();
+			Faller collidedFaller = collidedObject.GetComponent<Faller>();
 
-			collidedFlannel.Bump(
+			collidedFaller.Bump(
 				collidedObject.transform.position.x < transform.position.x
 			);
 		}
