@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Basket.cs" />
+     <Compile Include="Assets\BasketInnerCollisionManager.cs" />
+     <Compile Include="Assets\BasketOuterCollisionManager.cs" />
+     <Compile Include="Assets\Flannel.cs" />
+     <Compile Include="Assets\FlannelManager.cs" />
      <Compile Include="Assets\Highscore.cs" />
      <Compile Include="Assets\Score.cs" />
  <Reference Include="UnityEngine.UI">

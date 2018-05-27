@@ -8,28 +8,19 @@ public class Basket : MonoBehaviour {
 	public int xMovementSpeed;
 	public float noXMovementThreshold;
 
-	void Start () {
-		Vector2 worldPointLocation = Camera.main.ViewportToWorldPoint(
+	void Start() {
+		Vector2 screenPointLocation = Camera.main.ViewportToScreenPoint(
 			new Vector2(0.5F, 0F)
 		);
 
-		worldPointLocation.y += (
-			(
-				Camera.main.ScreenToWorldPoint(
-					new Vector2(0F, distanceFromBottom) 
-				).y
-			)
-				- (
-					Camera.main.ScreenToWorldPoint(
-						new Vector2(0F, 0F) 
-					).y
-			)
-		);
+		screenPointLocation.y += distanceFromBottom;
 
-		transform.position = worldPointLocation;
+		transform.position = Camera.main.ScreenToWorldPoint(
+			screenPointLocation
+		);
 	}
 
-	void FixedUpdate () {
+	void FixedUpdate() {
 		Vector2 touchWorldPoint = Camera.main.ScreenToWorldPoint(
 			Input.mousePosition
 		);
@@ -41,13 +32,11 @@ public class Basket : MonoBehaviour {
 			float newPositionX;
 
 			if (touchWorldPoint.x > transform.position.x) {
-				newPositionX = (
-				    transform.position.x + xMovementSpeed * Time.deltaTime
-				);
+				newPositionX
+					= transform.position.x + xMovementSpeed * Time.deltaTime;
 			} else {
-				newPositionX = (
-					transform.position.x - xMovementSpeed * Time.deltaTime
-				);
+				newPositionX
+					= transform.position.x - xMovementSpeed * Time.deltaTime;
 			}
 
 			transform.position = new Vector2(
