@@ -26,6 +26,10 @@ public class Score : MonoBehaviour {
 
 	void OnDestroy() {
 		PlayerPrefs.SetInt("last score", currentScore);
+		PlayerPrefs.SetInt(
+			"coins", 
+			PlayerPrefs.GetInt("coins") + currentScore
+		);
 	}
 
 	int ScoreForTime(float time) {

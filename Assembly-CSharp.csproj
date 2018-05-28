@@ -46,6 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CoinsStatus.cs" />
+     <Compile Include="Assets\FlannelCell.cs" />
+     <Compile Include="Assets\LeaveShopButton.cs" />
+     <Compile Include="Assets\ShopButton.cs" />
      <Compile Include="Assets\scripts\Basket.cs" />
      <Compile Include="Assets\scripts\BasketInnerCollisionManager.cs" />
      <Compile Include="Assets\scripts\BasketOuterCollisionManager.cs" />
