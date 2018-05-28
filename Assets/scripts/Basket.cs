@@ -6,7 +6,6 @@ public class Basket : MonoBehaviour {
 	public float distanceFromBottom;
 	public float scaleOfScreenWidth;
 	public float xMovementSpeed;
-	public float noXMovementThreshold;
 
 	void Start() {
 		Vector2 screenPointLocation = Camera.main.ViewportToScreenPoint(
@@ -25,24 +24,33 @@ public class Basket : MonoBehaviour {
 			Input.mousePosition
 		);
 
-		if (
-			Mathf.Abs(touchWorldPoint.x - transform.position.x) 
-				> noXMovementThreshold
-		) {
-			float newPositionX;
+		float newPositionX;
+		float xMovement = xMovementSpeed * Time.deltaTime;
 
+		if (
+			xMovement < Mathf.Abs(
+			    touchWorldPoint.x - transform.position.x
+		    )
+		) {
 			if (touchWorldPoint.x > transform.position.x) {
 				newPositionX
-					= transform.position.x + xMovementSpeed * Time.deltaTime;
+					= transform.position.x + xMovement;
 			} else {
 				newPositionX
-					= transform.position.x - xMovementSpeed * Time.deltaTime;
+					= transform.position.x - xMovement;
 			}
-
-			transform.position = new Vector2(
-				newPositionX,
-				transform.position.y
-			);
+		} else {
+			/*
+				If it can't reach the point through normal speed, just place it
+				there. This improves accuracy and also prevents possible 
+				jittering.
+			 */
+			newPositionX = touchWorldPoint.x;
 		}
+
+		transform.position = new Vector2(
+			newPositionX,
+			transform.position.y
+		);
 	}
 }
