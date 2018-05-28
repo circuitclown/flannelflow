@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Basket : MonoBehaviour {
-	public int distanceFromBottom;
-	public int scaleOfScreenWidth;
-	public int xMovementSpeed;
+	public float distanceFromBottom;
+	public float scaleOfScreenWidth;
+	public float xMovementSpeed;
 	public float noXMovementThreshold;
 
 	void Start() {

@@ -18,7 +18,7 @@ public class Highscore : MonoBehaviour {
 			highscore = originalHighscore;
 		} else {
 			originalHighscore = -1;
-			highscore = -1;
+			highscore = 0;
 		}
 	}
 	
@@ -32,7 +32,11 @@ public class Highscore : MonoBehaviour {
 	}
 
 	void OnDestroy() {
-		if (originalHighscore < highscore)
+		if (originalHighscore < highscore) {
 			PlayerPrefs.SetInt("highscore", highscore);
+			PlayerPrefs.SetInt("is new highscore", 1);
+		} else {
+			PlayerPrefs.SetInt("is new highscore", 0);
+		}
 	}
 }

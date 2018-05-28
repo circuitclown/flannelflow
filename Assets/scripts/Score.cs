@@ -17,16 +17,21 @@ public class Score : MonoBehaviour {
 	[HideInInspector]
 	public int currentScore = 0;
 
-	void Start () {}
-	void FixedUpdate () {
-		currentScore = ScoreForFixedTime(Time.fixedTime);
+	void Start() {}
+
+	void FixedUpdate() {
+		currentScore = ScoreForTime(Time.timeSinceLevelLoad);
 		scoreText.text = currentScore.ToString();
 	}
 
-	int ScoreForFixedTime (float fixedTime) {
+	void OnDestroy() {
+		PlayerPrefs.SetInt("last score", currentScore);
+	}
+
+	int ScoreForTime(float time) {
 		return (int) (
-		    scoreFunctionA * Mathf.Pow(fixedTime, 2)
-		   	    + scoreFunctionB * fixedTime
+		    scoreFunctionA * Mathf.Pow(time, 2)
+		   	    + scoreFunctionB * time
 		   		+ scoreFunctionC
 		);
 	}

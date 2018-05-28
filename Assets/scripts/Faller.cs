@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Faller : MonoBehaviour {
+public abstract class Faller : MonoBehaviour {
 	public float zRotationSpeed;
-	public int yMovementSpeed;
+	public float yMovementSpeed;
 	public float minXLocationScreenPoint;
 	public float maxXLocationScreenPoint;
 	public float xMovementSpeed;
+	public float missedThresholdScreenPoint;
 
 	[HideInInspector]
 	public bool isBumped = false;
+
 	private bool isBumpedLeft;
+
+	private float missedThresholdWorldPoint;
 
 	void Start() {
 		transform.position = Camera.main.ViewportToWorldPoint(
@@ -20,19 +24,36 @@ public class Faller : MonoBehaviour {
 				1F
 			)
 		);
+
+		missedThresholdWorldPoint = Camera.main.ScreenToWorldPoint(
+			new Vector2(
+				0F, 
+				Camera.main.ViewportToScreenPoint(
+					new Vector2(
+						0F,
+						0F
+					)
+				).y + missedThresholdScreenPoint
+			)
+		).y;
 	}
 
 	void FixedUpdate() {
 		float newPositionX;
+		bool isMissed = transform.position.y < missedThresholdWorldPoint;
 
-		if (isBumped) {
+		if (isBumped && !isMissed) {
 			if (isBumpedLeft) {
 				newPositionX 
-				= transform.position.x - xMovementSpeed * Time.deltaTime;
+					= transform.position.x - xMovementSpeed * Time.deltaTime;
 			} else {
 				newPositionX 
-				= transform.position.x + xMovementSpeed * Time.deltaTime;
+					= transform.position.x + xMovementSpeed * Time.deltaTime;
 			}
+		} else if (isMissed) {
+			Destroy(gameObject);
+			this.OnMissedThreshold();
+			return;
 		} else {
 			newPositionX = transform.position.x;
 		}
@@ -48,4 +69,6 @@ public class Faller : MonoBehaviour {
 		isBumped = true;
 		isBumpedLeft = isLeft;
 	}
+
+	abstract public void OnMissedThreshold();
 }
