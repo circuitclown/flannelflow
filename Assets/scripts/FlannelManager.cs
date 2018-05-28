@@ -20,8 +20,19 @@ public class FlannelManager : MonoBehaviour {
 	private float timeSinceLastFlannel;
 	private float currentDelayToNextFlannel;
 
+	/*
+	    NOTE: See `FlannelCell` for the list of IDs and colors.
+
+		Indexes correspond to flannel IDs.
+	 */
+	public Sprite[] flannelSprites;
+
 	void Start() {
 		currentDelayToNextFlannel = initialDelay;
+
+		flannelPrefab.GetComponent<SpriteRenderer>().sprite = flannelSprites[
+			PlayerPrefs.GetInt("selected flannel")
+		];
 	}
 	
 	void FixedUpdate() {

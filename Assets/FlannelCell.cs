@@ -31,6 +31,9 @@ public class FlannelCell : MonoBehaviour {
 		0, 500, 1500, 4000, 10000,
 	};
 
+
+	private static List<FlannelCell> flannelCells = new List<FlannelCell>();
+
 	private string playerPrefsOwnsKey;
 
 	void Start() {
@@ -40,7 +43,9 @@ public class FlannelCell : MonoBehaviour {
 		if (flannelID == 0 && PlayerPrefs.GetInt(playerPrefsOwnsKey) != 1) {
 			PlayerPrefs.SetInt(playerPrefsOwnsKey, 1);
 		}
-			
+
+		flannelCells.Add(this);
+
 		UpdateButton();
 	}
 
@@ -56,7 +61,7 @@ public class FlannelCell : MonoBehaviour {
 				button.onClick.RemoveAllListeners();
 				button.onClick.AddListener(delegate {
 					Select();
-					UpdateButton();
+					UpdateAllButtons();
 				});
 			}
 		} else {
@@ -67,12 +72,18 @@ public class FlannelCell : MonoBehaviour {
 				button.onClick.RemoveAllListeners();
 				button.onClick.AddListener(delegate {
 					Buy();
-					UpdateButton();
+					UpdateAllButtons();
 				});
 			} else {
 				button.interactable = false;
 				buttonText.text = "Need More Coins";
 			}
+		}
+	}
+
+	private static void UpdateAllButtons() {
+		for (int i = 0; i < flannelCells.Count; i++) {
+			flannelCells[i].UpdateButton();
 		}
 	}
 
