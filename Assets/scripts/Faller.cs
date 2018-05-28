@@ -9,13 +9,18 @@ public abstract class Faller : MonoBehaviour {
 	public float maxXLocationScreenPoint;
 	public float xMovementSpeed;
 	public float missedThresholdScreenPoint;
+	public float fadeSpeed;
 
 	[HideInInspector]
 	public bool isBumped = false;
 
 	private bool isBumpedLeft;
+	private bool isFading = false;
+	private float fadingStartTime;
 
 	private float missedThresholdWorldPoint;
+
+	private SpriteRenderer spriteRenderer;
 
 	void Start() {
 		transform.position = Camera.main.ViewportToWorldPoint(
@@ -36,13 +41,30 @@ public abstract class Faller : MonoBehaviour {
 				).y + missedThresholdScreenPoint
 			)
 		).y;
+
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	void FixedUpdate() {
-		float newPositionX;
+		float newPositionX = transform.position.x;
 		bool isMissed = transform.position.y < missedThresholdWorldPoint;
 
-		if (isBumped && !isMissed) {
+		if (isFading) {
+			Color newColor = spriteRenderer.color;
+			newColor.a = (
+			    1 - Mathf.Min(
+					(Time.timeSinceLevelLoad - fadingStartTime) * fadeSpeed,
+				    1
+			    )
+			);
+			spriteRenderer.color = newColor;
+
+			if (newColor.a == 0)
+				Destroy(gameObject);
+		}
+
+		// Fading, soon-to-be-removed `Faller`s shouldn't also be bumped.
+		if (!isFading && isBumped) {
 			if (isBumpedLeft) {
 				newPositionX 
 					= transform.position.x - xMovementSpeed * Time.deltaTime;
@@ -50,12 +72,12 @@ public abstract class Faller : MonoBehaviour {
 				newPositionX 
 					= transform.position.x + xMovementSpeed * Time.deltaTime;
 			}
-		} else if (isMissed) {
+		} 
+
+		if (isMissed) {
 			Destroy(gameObject);
 			this.OnMissedThreshold();
 			return;
-		} else {
-			newPositionX = transform.position.x;
 		}
 
 		transform.Rotate(new Vector3(0, 0, zRotationSpeed * Time.deltaTime));
@@ -68,6 +90,11 @@ public abstract class Faller : MonoBehaviour {
 	public void Bump(bool isLeft) {
 		isBumped = true;
 		isBumpedLeft = isLeft;
+	}
+
+	public void FadeAndDestroy() {
+		isFading = true;
+		fadingStartTime = Time.timeSinceLevelLoad;
 	}
 
 	abstract public void OnMissedThreshold();

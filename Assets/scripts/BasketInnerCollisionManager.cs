@@ -13,7 +13,7 @@ public class BasketInnerCollisionManager : MonoBehaviour {
 			Faller collidedFaller = collidedObject.GetComponent<Faller>();
 
 			if (!collidedFaller.isBumped)
-				Destroy(collidedObject);
+				collidedFaller.FadeAndDestroy();
 		}
 	}
 }

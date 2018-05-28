@@ -11,7 +11,7 @@ public class Lives : MonoBehaviour {
 	void Update() {}
 
 	public void LoseLife() {
-		if (1 <= liveImages.Count) {
+		if (2 <= liveImages.Count) {
 			liveImages[0].enabled = false;
 			liveImages.RemoveAt(0);
 		} else {

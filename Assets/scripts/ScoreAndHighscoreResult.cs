@@ -18,11 +18,11 @@ public class ScoreAndHighscoreResult : MonoBehaviour {
 		);
 
 		if (isNewHighscore) {
+			highscoreString = "New Highscore!";
+		} else {
 			highscoreString = (
 				"Highscore: " + highscore.ToString()
 			);
-		} else {
-			highscoreString = "New Highscore!";
 		}
 
 		text.text = scoreString + "\n" + highscoreString;
