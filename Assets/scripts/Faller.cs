@@ -98,4 +98,5 @@ public abstract class Faller : MonoBehaviour {
 	}
 
 	abstract public void OnMissedThreshold();
+	abstract public void OnCatch();
 }

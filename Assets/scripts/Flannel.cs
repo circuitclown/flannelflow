@@ -10,4 +10,6 @@ public class Flannel : Faller {
 	override public void OnMissedThreshold() {
 		lives.LoseLife();
 	}
+
+	override public void OnCatch() {}
 }
