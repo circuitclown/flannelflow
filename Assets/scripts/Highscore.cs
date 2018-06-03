@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms;
 
 public class Highscore : MonoBehaviour {
 	public Score score;
@@ -38,5 +39,11 @@ public class Highscore : MonoBehaviour {
 		} else {
 			PlayerPrefs.SetInt("is new highscore", 0);
 		}
+
+		Social.localUser.Authenticate(OnAuthenticate);
+		Social.ReportScore(highscore, "flannelflow-main", OnReportScore);
 	}
+
+	void OnAuthenticate(bool wasSuccessful) {}
+	void OnReportScore(bool wasSuccessful) {}
 }
