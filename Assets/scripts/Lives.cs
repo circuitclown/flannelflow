@@ -17,7 +17,7 @@ public class Lives : MonoBehaviour {
 		liveImages[0].enabled = false;
 		liveImages.RemoveAt(0);
 
-		if (liveImages.Count <= 1) {
+		if (liveImages.Count <= 0) {
 			sceneTransitioner.FadeOutAndTransition(2);
 			basicAdPlayer.MaybePlayAd();
 		}
