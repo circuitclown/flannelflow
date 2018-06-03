@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class Lives : MonoBehaviour {
 	public List<Image> liveImages;
 	public SceneTransitioner sceneTransitioner;
+	public BasicAdPlayer basicAdPlayer;
+
 
 	void Start() {}
 	void Update() {}
@@ -17,6 +19,7 @@ public class Lives : MonoBehaviour {
 			liveImages.RemoveAt(0);
 		} else {
 			sceneTransitioner.FadeOutAndTransition(2);
+			basicAdPlayer.MaybePlayAd();
 		}
 	}
 }

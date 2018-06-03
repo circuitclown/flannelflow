@@ -12,7 +12,7 @@ public class LeaderboardButton : MonoBehaviour {
 		MobileNativePopups.OpenAlertDialog(
 			"Sorry!", 
 			"There was an error opening the leaderboard. Please try again "
-			+ "later.", 
+				+ "later.", 
 			"OK", 
 			OnAcceptLeaderboardFailure
 		);
