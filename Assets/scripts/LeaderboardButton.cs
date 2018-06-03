@@ -15,7 +15,7 @@ public class LeaderboardButton : MonoBehaviour {
 	}
 
 	void OnAuthenticate(bool wasSuccessful) {
-		if (wasSuccessful) {
+		if (wasSuccessful && Social.localUser.authenticated) {
 			GameCenterPlatform.ShowLeaderboardUI(
 				"flannelflow_main", 
 				UnityEngine.SocialPlatforms.TimeScope.AllTime
