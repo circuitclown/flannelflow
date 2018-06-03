@@ -46,8 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BasicAdPlayer.cs" />
      <Compile Include="Assets\MobileNativePopups\Examples\Scripts\TestScene.cs" />
+     <Compile Include="Assets\scripts\BasicAdPlayer.cs" />
      <Compile Include="Assets\scripts\Basket.cs" />
      <Compile Include="Assets\scripts\BasketInnerCollisionManager.cs" />
      <Compile Include="Assets\scripts\BasketOuterCollisionManager.cs" />

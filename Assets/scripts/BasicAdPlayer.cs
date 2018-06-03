@@ -7,7 +7,7 @@ public class BasicAdPlayer : MonoBehaviour {
 	public int gamesPerBasicAd;
 
 	void Start () {
-		Advertisement.Initialize("2602297", true);
+		Advertisement.Initialize("2602297");
 	}
 
 	public void MaybePlayAd() {
