@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LeaveShopButton : MonoBehaviour {
+	public SceneTransitioner sceneTransitioner;
+
 	public void GoToEndScene() {
-		SceneManager.LoadScene(2);
+		sceneTransitioner.FadeOutAndTransition(2);
 	}
 }

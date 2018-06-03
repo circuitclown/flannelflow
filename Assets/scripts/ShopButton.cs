@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ShopButton : MonoBehaviour {
+	public SceneTransitioner sceneTransitioner;
+
 	public void GoToShopScene() {
-		SceneManager.LoadScene(3);
+		sceneTransitioner.FadeOutAndTransition(3);
 	}
 }

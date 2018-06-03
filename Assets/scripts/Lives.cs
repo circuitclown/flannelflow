@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Lives : MonoBehaviour {
 	public List<Image> liveImages;
+	public SceneTransitioner sceneTransitioner;
 
 	void Start() {}
 	void Update() {}
@@ -15,7 +16,7 @@ public class Lives : MonoBehaviour {
 			liveImages[0].enabled = false;
 			liveImages.RemoveAt(0);
 		} else {
-			SceneManager.LoadScene(2);
+			sceneTransitioner.FadeOutAndTransition(2);
 		}
 	}
 }

@@ -14,14 +14,29 @@ public class Basket : MonoBehaviour {
 
 		screenPointLocation.y += distanceFromBottom;
 
-		transform.position = Camera.main.ScreenToWorldPoint(
+		Vector2 worldPointLocation = Camera.main.ScreenToWorldPoint(
 			screenPointLocation
+		);
+
+		/*
+			I don't know why, but this redundant `Vector2` creation makes it
+			visible before it is moved.
+		 */
+		transform.position = new Vector2(
+			worldPointLocation.x,
+			worldPointLocation.y
 		);
 	}
 
 	void FixedUpdate() {
+		if (Input.touchCount > 0) {
+			MoveBasedOnTouch(Input.GetTouch(0));
+		}
+	}
+
+	private void MoveBasedOnTouch(Touch touch) {
 		Vector2 touchWorldPoint = Camera.main.ScreenToWorldPoint(
-			Input.mousePosition
+			touch.position
 		);
 
 		float newPositionX;
@@ -29,15 +44,15 @@ public class Basket : MonoBehaviour {
 
 		if (
 			xMovement < Mathf.Abs(
-			    touchWorldPoint.x - transform.position.x
-		    )
+				touchWorldPoint.x - transform.position.x
+			)
 		) {
 			if (touchWorldPoint.x > transform.position.x) {
 				newPositionX
-					= transform.position.x + xMovement;
+				= transform.position.x + xMovement;
 			} else {
 				newPositionX
-					= transform.position.x - xMovement;
+				= transform.position.x - xMovement;
 			}
 		} else {
 			/*

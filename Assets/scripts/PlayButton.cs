@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayButton : MonoBehaviour {
+	public SceneTransitioner sceneTransitioner;
+	
 	void Start () {}
 	void Update() {}
 
 	public void GoToGameScene() {
-		SceneManager.LoadScene(1);
+		sceneTransitioner.FadeOutAndTransition(1);
 	}
 }
