@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerupUser : MonoBehaviour {
 	public Score score;
 	public GameObject flannelPrefab;
+	public GameObject flannelManagerObject;
 	public Basket basket;
 	public float widenBasketGrowthDuration;
 
@@ -43,11 +44,18 @@ public class PowerupUser : MonoBehaviour {
 			flannelPrefab.GetComponent<Flannel>().yMovementSpeed /= 2;
 
 			GameObject[] flannelObjects = GameObject.FindGameObjectsWithTag(
-			    "flannel"
-			);
+				                              "flannel"
+			                              );
 			for (int i = 0; i < flannelObjects.Length; i++) {
-				flannelObjects[i].GetComponent<Flannel>().yMovementSpeed /= 2;
+				flannelObjects [i].GetComponent<Flannel>().yMovementSpeed /= 2;
 			}
+
+			FlannelManager flannelManager = (
+				flannelManagerObject.GetComponent<FlannelManager>()
+			);
+			flannelManager.delayFunctionA *= 2;
+			flannelManager.delayFunctionB *= 2;
+			flannelManager.delayFunctionB *= 2;
 
 			break;
 		case 2:
@@ -74,6 +82,13 @@ public class PowerupUser : MonoBehaviour {
 				flannelObjects[i].GetComponent<Flannel>().yMovementSpeed *= 2;
 			}
 
+			FlannelManager flannelManager = (
+				flannelManagerObject.GetComponent<FlannelManager>()
+			);
+			flannelManager.delayFunctionA /= 2;
+			flannelManager.delayFunctionB /= 2;
+			flannelManager.delayFunctionB /= 2;
+
 			break;
 		}
 	}
@@ -95,9 +110,7 @@ public class PowerupUser : MonoBehaviour {
 					powerupDurations[i] - widenBasketGrowthDuration 
 						< timeSinceStartedPowerups[i]
 				);
-
-				Debug.Log(shouldBeShrinking);
-
+					
 				if (shouldBeGrowing) {
 					newWidth = originalBasketWidth * (
 						Mathf.Lerp(

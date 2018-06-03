@@ -41,9 +41,11 @@ public class Highscore : MonoBehaviour {
 		}
 
 		Social.localUser.Authenticate(OnAuthenticate);
-		Social.ReportScore(highscore, "flannelflow-main", OnReportScore);
 	}
 
-	void OnAuthenticate(bool wasSuccessful) {}
+	void OnAuthenticate(bool wasSuccessful) {
+		Social.ReportScore(highscore, "flannelflow_main", OnReportScore);
+	}
+
 	void OnReportScore(bool wasSuccessful) {}
 }
