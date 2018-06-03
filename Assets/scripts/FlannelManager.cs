@@ -45,6 +45,7 @@ public class FlannelManager : MonoBehaviour {
 			currentDelayToNextFlannel = DelayToNextFlannelForFlannels(
 				numberOfFlannels
 			);
+			Debug.Log("a" + delayFunctionA + "b" + delayFunctionB + "C" + delayFunctionC + "D" + currentDelayToNextFlannel);
 		}
 	}
 

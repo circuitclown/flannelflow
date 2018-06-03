@@ -89,11 +89,11 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
- <Reference Include="MobileNativePopups">
- <HintPath>/Users/skunkmb/Desktop/Main/Dev/Flannel Flow/Assets/MobileNativePopups/MobileNativePopups.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.Advertisements.Editor">
  <HintPath>/Users/skunkmb/Desktop/Main/Dev/Flannel Flow/Assets/UnityAds/UnityEngine.Advertisements.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="MobileNativePopups">
+ <HintPath>/Users/skunkmb/Desktop/Main/Dev/Flannel Flow/Assets/MobileNativePopups/MobileNativePopups.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

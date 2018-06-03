@@ -5,14 +5,17 @@
       <File FileName="Assets/scripts/Basket.cs" Line="24" Column="4" />
       <File FileName="Assets/scripts/Faller.cs" Line="45" Column="19" />
       <File FileName="Assets/scripts/LeaveShopButton.cs" Line="10" Column="45" />
-      <File FileName="Assets/scripts/Lives.cs" Line="19" Column="4" />
-      <File FileName="Assets/scripts/PlayButton.cs" Line="13" Column="43" />
-      <File FileName="Assets/scripts/ShopButton.cs" Line="10" Column="45" />
+      <File FileName="Assets/scripts/PlayButton.cs" Line="13" Column="18" />
+      <File FileName="Assets/scripts/ShopButton.cs" Line="13" Column="1" />
       <File FileName="Assets/scripts/SceneTransitioner.cs" Line="30" Column="4" />
       <File FileName="Assets/scripts/Score.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/Highscore.cs" Line="48" Column="43" />
+      <File FileName="Assets/scripts/Highscore.cs" Line="47" Column="50" />
       <File FileName="Assets/scripts/ScoreAndHighscoreResult.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/LeaderboardButton.cs" Line="20" Column="4" />
+      <File FileName="Assets/scripts/LeaderboardButton.cs" Line="19" Column="22" />
+      <File FileName="Assets/MobileNativePopups/Examples/Scripts/TestScene.cs" Line="3" Column="31" />
+      <File FileName="Assets/scripts/Lives.cs" Line="22" Column="32" />
+      <File FileName="Assets/scripts/PowerupUser.cs" Line="98" Column="27" />
+      <File FileName="Assets/scripts/BasicAdPlayer.cs" Line="31" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

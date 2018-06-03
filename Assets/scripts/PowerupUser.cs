@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerupUser : MonoBehaviour {
 	public Score score;
 	public GameObject flannelPrefab;
-	public GameObject flannelManagerObject;
+	public FlannelManager flannelManager;
 	public Basket basket;
 	public float widenBasketGrowthDuration;
 
@@ -50,12 +50,9 @@ public class PowerupUser : MonoBehaviour {
 				flannelObjects [i].GetComponent<Flannel>().yMovementSpeed /= 2;
 			}
 
-			FlannelManager flannelManager = (
-				flannelManagerObject.GetComponent<FlannelManager>()
-			);
 			flannelManager.delayFunctionA *= 2;
 			flannelManager.delayFunctionB *= 2;
-			flannelManager.delayFunctionB *= 2;
+			flannelManager.delayFunctionC *= 2;
 
 			break;
 		case 2:
@@ -82,9 +79,6 @@ public class PowerupUser : MonoBehaviour {
 				flannelObjects[i].GetComponent<Flannel>().yMovementSpeed *= 2;
 			}
 
-			FlannelManager flannelManager = (
-				flannelManagerObject.GetComponent<FlannelManager>()
-			);
 			flannelManager.delayFunctionA /= 2;
 			flannelManager.delayFunctionB /= 2;
 			flannelManager.delayFunctionB /= 2;
