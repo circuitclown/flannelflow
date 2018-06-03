@@ -14,10 +14,10 @@ public class Lives : MonoBehaviour {
 	void Update() {}
 
 	public void LoseLife() {
-		if (2 <= liveImages.Count) {
-			liveImages[0].enabled = false;
-			liveImages.RemoveAt(0);
-		} else {
+		liveImages[0].enabled = false;
+		liveImages.RemoveAt(0);
+
+		if (liveImages.Count <= 1) {
 			sceneTransitioner.FadeOutAndTransition(2);
 			basicAdPlayer.MaybePlayAd();
 		}
