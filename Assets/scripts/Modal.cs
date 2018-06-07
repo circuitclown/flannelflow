@@ -10,6 +10,8 @@ public class Modal : MonoBehaviour {
 	private float timeSinceStartedFading;
 	private bool isFading;
 	private CanvasGroup canvasGroup;
+	private static Modal currentModal;
+	private static OKButton currentOKButton;
 
 	public static bool isModalOpen;
 
@@ -45,9 +47,9 @@ public class Modal : MonoBehaviour {
 			modalPrefab, new Vector3(0, 0, 0), Quaternion.identity
 		);
 
-		Modal modal = modalObject.GetComponent<Modal>();
-		modal.messageText.text = message;
-		modalObject.transform.SetParent(parent);
+		currentModal = modalObject.GetComponent<Modal>();
+		currentModal.messageText.text = message;
+		currentModal.transform.SetParent(parent);
 
 		RectTransform modalRectTransform
 			= modalObject.GetComponent<RectTransform>();
@@ -55,5 +57,27 @@ public class Modal : MonoBehaviour {
 		modalRectTransform.offsetMax = new Vector2(0, 0);
 
 		isModalOpen = true;
+		currentOKButton 
+			= modalObject.transform.GetChild(1).GetComponent<OKButton>();
+	}
+
+	public static void HideModal() {
+		currentOKButton.HideModal();
+	}
+
+	public static void MaybeHideModal() {
+		if (isModalOpen)
+			HideModal();
+	}
+
+	public static void ChangeOrOpenModal(
+		GameObject modalPrefab, 
+		string message, 
+		Transform parent
+	) {
+		if (isModalOpen)
+			currentModal.messageText.text = message;
+		else
+			OpenModal(modalPrefab, message, parent);
 	}
 }

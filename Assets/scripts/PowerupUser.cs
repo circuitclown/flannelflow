@@ -81,7 +81,7 @@ public class PowerupUser : MonoBehaviour {
 
 			flannelManager.delayFunctionA /= 2;
 			flannelManager.delayFunctionB /= 2;
-			flannelManager.delayFunctionB /= 2;
+			flannelManager.delayFunctionC /= 2;
 
 			break;
 		}

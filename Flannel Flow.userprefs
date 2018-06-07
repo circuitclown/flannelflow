@@ -11,12 +11,14 @@
       <File FileName="Assets/scripts/ShopButton.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/SceneTransitioner.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/Score.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/Highscore.cs" Line="47" Column="50" />
+      <File FileName="Assets/scripts/Highscore.cs" Line="43" Column="3" />
       <File FileName="Assets/scripts/ScoreAndHighscoreResult.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/Lives.cs" Line="22" Column="29" />
+      <File FileName="Assets/scripts/Lives.cs" Line="23" Column="4" />
       <File FileName="Assets/scripts/BasicAdPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/LeaderboardButton.cs" Line="19" Column="5" />
       <File FileName="Assets/scripts/PowerupManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/LeaderboardButton.cs" Line="24" Column="4" />
+      <File FileName="Assets/scripts/Modal.cs" Line="57" Column="14" />
+      <File FileName="Assets/scripts/OKButton.cs" Line="24" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
