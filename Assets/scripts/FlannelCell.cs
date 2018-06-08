@@ -31,7 +31,6 @@ public class FlannelCell : MonoBehaviour {
 		0, 500, 1500, 4000, 10000,
 	};
 
-
 	private static List<FlannelCell> flannelCells = new List<FlannelCell>();
 
 	private string playerPrefsOwnsKey;
@@ -98,5 +97,10 @@ public class FlannelCell : MonoBehaviour {
 			PlayerPrefs.GetInt("coins") - flannelPrices[flannelID]
 		);
 		Select();
+	}
+
+	void OnDestroy() {
+		button.onClick.RemoveAllListeners();
+		flannelCells.Remove(this);
 	}
 }
