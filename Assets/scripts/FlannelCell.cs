@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FlannelCell : MonoBehaviour {
 	public Button button;
 	public Text buttonText;
+	public CoinsStatus coinsStatus;
 
 	/*  
 		Flannel IDs are as follows:
@@ -28,7 +29,7 @@ public class FlannelCell : MonoBehaviour {
 		Indexes correspond to flannel IDs.
 	 */
 	private static int[] flannelPrices = {
-		0, 500, 1500, 4000, 10000,
+		0, 1000, 3000, 8000, 13000,
 	};
 
 	private static List<FlannelCell> flannelCells = new List<FlannelCell>();
@@ -64,7 +65,7 @@ public class FlannelCell : MonoBehaviour {
 				});
 			}
 		} else {
-			if (flannelPrices[flannelID] < PlayerPrefs.GetInt("coins")) {
+			if (flannelPrices[flannelID] <= PlayerPrefs.GetInt("coins")) {
 				button.interactable = true;
 				buttonText.text = "Buy!";
 
@@ -91,11 +92,11 @@ public class FlannelCell : MonoBehaviour {
 	}
 
 	private void Buy() {
+		int newAmount = PlayerPrefs.GetInt("coins") - flannelPrices[flannelID];
+
 		PlayerPrefs.SetInt(playerPrefsOwnsKey, 1);
-		PlayerPrefs.SetInt(
-			"coins", 
-			PlayerPrefs.GetInt("coins") - flannelPrices[flannelID]
-		);
+		PlayerPrefs.SetInt("coins", newAmount);
+		coinsStatus.UpdateCoinsAmount(newAmount);
 		Select();
 	}
 
