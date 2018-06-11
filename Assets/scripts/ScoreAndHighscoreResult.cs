@@ -9,9 +9,9 @@ public class ScoreAndHighscoreResult : MonoBehaviour {
 		string scoreString;
 		string highscoreString;
 
-		int lastScore = PlayerPrefs.GetInt("last score");
-		int highscore = PlayerPrefs.GetInt("highscore");
-		bool isNewHighscore = PlayerPrefs.GetInt("is new highscore") == 1;
+		long lastScore = Storage.GetNumber("last score");
+		long highscore = Storage.GetNumber("highscore");
+		bool isNewHighscore = Storage.GetNumber("is new highscore") == 1;
 
 		scoreString = (
 		    "Score: " + lastScore.ToString()

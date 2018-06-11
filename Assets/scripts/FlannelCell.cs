@@ -15,10 +15,11 @@ public class FlannelCell : MonoBehaviour {
 		1: Blue,
 		2: Brown,
 		3: Black,
-		4: Pink.
+		4: Pink,
+		5: Gold.
 
 		NOTE: If a possible ID is added here, a new flannel cell should be 
-		added to the list.
+		added to the list and to flannel sprites for `FlannelManager`.
 	 */
 	public int flannelID;
 
@@ -28,8 +29,8 @@ public class FlannelCell : MonoBehaviour {
 
 		Indexes correspond to flannel IDs.
 	 */
-	private static int[] flannelPrices = {
-		0, 1000, 3000, 8000, 13000,
+	private static long[] flannelPrices = {
+		0, 1000, 3000, 8000, 13000, 26000
 	};
 
 	private static List<FlannelCell> flannelCells = new List<FlannelCell>();
@@ -40,8 +41,8 @@ public class FlannelCell : MonoBehaviour {
 		playerPrefsOwnsKey = "owns flannel " + flannelID.ToString();
 
 		// The first flannel should always be owned.
-		if (flannelID == 0 && PlayerPrefs.GetInt(playerPrefsOwnsKey) != 1) {
-			PlayerPrefs.SetInt(playerPrefsOwnsKey, 1);
+		if (flannelID == 0 && Storage.GetNumber(playerPrefsOwnsKey) != 1) {
+			Storage.SetNumber(playerPrefsOwnsKey, 1);
 		}
 
 		flannelCells.Add(this);
@@ -50,8 +51,8 @@ public class FlannelCell : MonoBehaviour {
 	}
 
 	private void UpdateButton() {
-		if (PlayerPrefs.GetInt(playerPrefsOwnsKey) == 1) {
-			if (PlayerPrefs.GetInt("selected flannel") == flannelID) {
+		if (Storage.GetNumber(playerPrefsOwnsKey) == 1) {
+			if (Storage.GetNumber("selected flannel") == flannelID) {
 				button.interactable = false;
 				buttonText.text = "Selected!";
 			} else {
@@ -65,7 +66,7 @@ public class FlannelCell : MonoBehaviour {
 				});
 			}
 		} else {
-			if (flannelPrices[flannelID] <= PlayerPrefs.GetInt("coins")) {
+			if (flannelPrices[flannelID] <= Storage.GetNumber("coins")) {
 				button.interactable = true;
 				buttonText.text = "Buy!";
 
@@ -88,14 +89,14 @@ public class FlannelCell : MonoBehaviour {
 	}
 
 	private void Select() {
-		PlayerPrefs.SetInt("selected flannel", flannelID);
+		Storage.SetNumber("selected flannel", flannelID);
 	}
 
 	private void Buy() {
-		int newAmount = PlayerPrefs.GetInt("coins") - flannelPrices[flannelID];
+		long newAmount = Storage.GetNumber("coins") - flannelPrices[flannelID];
 
-		PlayerPrefs.SetInt(playerPrefsOwnsKey, 1);
-		PlayerPrefs.SetInt("coins", newAmount);
+		Storage.SetNumber(playerPrefsOwnsKey, 1);
+		Storage.SetNumber("coins", newAmount);
 		coinsStatus.UpdateCoinsAmount(newAmount);
 		Select();
 	}

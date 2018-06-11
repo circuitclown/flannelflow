@@ -69,6 +69,7 @@
      <Compile Include="Assets\scripts\Score.cs" />
      <Compile Include="Assets\scripts\ScoreAndHighscoreResult.cs" />
      <Compile Include="Assets\scripts\ShopButton.cs" />
+     <Compile Include="Assets\scripts\Storage.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

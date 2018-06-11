@@ -32,7 +32,14 @@ public class PowerupUser : MonoBehaviour {
 			timeSinceStartedPowerups.Add(0);
 		}
 	}
+
 	public void UsePowerup(int id) {
+		// Active powerups shouldn't double-up.
+		if (activePowerups[id] == true) {
+			timeSinceStartedPowerups[id] = 0;
+			return;
+		}
+		
 		activePowerups[id] = true;
 		timeSinceStartedPowerups[id] = 0;
 

@@ -9,13 +9,13 @@ public class Highscore : MonoBehaviour {
 	public Text highscoreText;
 
 	[HideInInspector]
-	public int highscore;
+	public long highscore;
 
-	private int originalHighscore;
+	private long originalHighscore;
 
 	void Start() {
 		if (PlayerPrefs.HasKey("highscore")) {
-			originalHighscore = PlayerPrefs.GetInt("highscore");
+			originalHighscore = Storage.GetNumber("highscore");
 			highscore = originalHighscore;
 		} else {
 			originalHighscore = -1;
@@ -34,10 +34,10 @@ public class Highscore : MonoBehaviour {
 
 	void OnDestroy() {
 		if (originalHighscore < highscore) {
-			PlayerPrefs.SetInt("highscore", highscore);
-			PlayerPrefs.SetInt("is new highscore", 1);
+			Storage.SetNumber("highscore", highscore);
+			Storage.SetNumber("is new highscore", 1);
 		} else {
-			PlayerPrefs.SetInt("is new highscore", 0);
+			Storage.SetNumber("is new highscore", 0);
 		}
 
 		Social.localUser.Authenticate(OnAuthenticate);

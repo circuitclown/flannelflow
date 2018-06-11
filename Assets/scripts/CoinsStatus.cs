@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class CoinsStatus : MonoBehaviour {
 	void Start () {
-		UpdateCoinsAmount(PlayerPrefs.GetInt("coins"));
+		UpdateCoinsAmount(Storage.GetNumber("coins"));
 	}
 
-	public void UpdateCoinsAmount(int newAmount) {
+	public void UpdateCoinsAmount(long newAmount) {
 		/*
 			This does not update `PlayerPrefs`, which should be updated 
 			separately.
 		 */
 
 		Text text = GetComponent<Text>();
-		int coinsAmount = newAmount;
+		long coinsAmount = newAmount;
 		string coinsText = coinsAmount == 0 ? "no" : coinsAmount.ToString();
 		text.text = "You have " + coinsText + " coins.";
 	}

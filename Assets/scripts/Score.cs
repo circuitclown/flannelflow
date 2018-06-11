@@ -15,7 +15,7 @@ public class Score : MonoBehaviour {
 	public Text scoreText;
 
 	[HideInInspector]
-	public int currentScore = 0;
+	public long currentScore = 0;
 
 	void Start() {}
 
@@ -25,10 +25,10 @@ public class Score : MonoBehaviour {
 	}
 
 	void OnDestroy() {
-		PlayerPrefs.SetInt("last score", currentScore);
-		PlayerPrefs.SetInt(
+		Storage.SetNumber("last score", currentScore);
+		Storage.SetNumber(
 			"coins", 
-			PlayerPrefs.GetInt("coins") + currentScore
+			Storage.GetNumber("coins") + currentScore
 		);
 	}
 

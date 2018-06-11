@@ -13,6 +13,7 @@ public class FlannelManager : MonoBehaviour {
 	public float delayFunctionA;
 	public float delayFunctionB;
 	public float delayFunctionC;
+	public float delayFunctionArgumentAddition;
 
 	public float initialDelay;
 
@@ -31,7 +32,7 @@ public class FlannelManager : MonoBehaviour {
 		currentDelayToNextFlannel = initialDelay;
 
 		flannelPrefab.GetComponent<SpriteRenderer>().sprite = flannelSprites[
-			PlayerPrefs.GetInt("selected flannel")
+			Storage.GetNumber("selected flannel")
 		];
 	}
 	
@@ -64,9 +65,12 @@ public class FlannelManager : MonoBehaviour {
 	}
 
 	float DelayToNextFlannelForFlannels(int numberOfFlannels) {
+		float addedNumberOfFlannels = (
+			numberOfFlannels + delayFunctionArgumentAddition
+        );
 		return (
-			delayFunctionA * Mathf.Pow((1 / numberOfFlannels), 2)
-				+ delayFunctionB * (1 / numberOfFlannels)
+			delayFunctionA * Mathf.Pow((1 / addedNumberOfFlannels), 2)
+				+ delayFunctionB * (1 / addedNumberOfFlannels)
 				+ delayFunctionC
 		);
 	}
