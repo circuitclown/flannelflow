@@ -9,12 +9,16 @@ public class PowerupManager : MonoBehaviour {
 	public PowerupUser powerupUser;
 
 	/*
-		Indexes are powerup IDs, as defined in `PowerupUser`.
+		Indexes are powerup IDs, as defined in `PowerupUser`. For chances, a
+		random value 0-1 inclusive is generated. If the value is less or equal 
+		to the value for an index in `powerupChanceMaximum` and greater than 
+		the value below, then that powerup is used.
 
 		NOTE: If a new powerup is added, it should also be added to the list
 		in `PowerupUser`.
 	 */
 	public GameObject[] powerupPrefabs;
+	public float[] powerupChanceMaximum;
 
 	private float timeSinceLastPowerup;
 	private float currentDelayToNextPowerup;
@@ -36,9 +40,24 @@ public class PowerupManager : MonoBehaviour {
 	private void InstantiatePowerup() {
 		float randomNumber = Random.value;
 
-		GameObject prefab = null;
+		// `powerupID` should be set later, but if it isn't, pick evenly. 
 		int powerupID = Random.Range(0, powerupPrefabs.Length);
-		prefab = powerupPrefabs[powerupID];
+		float randomValue = Random.value;
+
+		// Disallow 0 in order to not give the first powerup a slight increase.
+		while (randomValue == 0)
+			randomValue = Random.value;
+
+		for (int i = 0; i < powerupChanceMaximum.Length; i++) {
+			if (
+				(i == 0 ? 0 : powerupChanceMaximum[i - 1]) < randomValue
+					&& randomValue <= powerupChanceMaximum[i]
+			) {
+				powerupID = i;
+			}
+		}
+	
+		GameObject prefab = powerupPrefabs[powerupID];
 
 		// The prefab is automatically randomly placed by `Faller`.
 		GameObject powerupObject = Instantiate(
